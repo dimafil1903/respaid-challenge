@@ -13,6 +13,8 @@ class Config
     private string $apiKey;
     private string $model;
     private ?string $baseUrl;
+    private string $openaiApiKey;
+    private string $openaiModel;
     private float $passThreshold;
     private int $maxTurns;
 
@@ -23,10 +25,10 @@ class Config
         $dotenv = Dotenv::createImmutable($envPath);
         $dotenv->safeLoad();
 
-        $this->driver = $_ENV['LLM_DRIVER'] ?? getenv('LLM_DRIVER') ?: 'anthropic';
-        $this->baseUrl = $_ENV['ANTHROPIC_BASE_URL'] ?? getenv('ANTHROPIC_BASE_URL') ?: null;
+        $this->driver = $this->env('LLM_DRIVER', 'anthropic');
+        $this->baseUrl = $this->env('ANTHROPIC_BASE_URL');
 
-        $this->apiKey = $_ENV['ANTHROPIC_API_KEY'] ?? getenv('ANTHROPIC_API_KEY') ?: '';
+        $this->apiKey = $this->env('ANTHROPIC_API_KEY', '');
         if (in_array($this->driver, ['anthropic', 'mokksy']) && empty($this->apiKey)) {
             throw new RuntimeException(
                 'ANTHROPIC_API_KEY is required. Copy .env.example to .env and set your key.'
@@ -40,9 +42,23 @@ class Config
             );
         }
 
-        $this->model = $_ENV['ANTHROPIC_MODEL'] ?? getenv('ANTHROPIC_MODEL') ?: 'claude-sonnet-4-20250514';
-        $this->passThreshold = (float) ($_ENV['PASS_THRESHOLD'] ?? getenv('PASS_THRESHOLD') ?: 3.5);
-        $this->maxTurns = (int) ($_ENV['MAX_TURNS'] ?? getenv('MAX_TURNS') ?: 3);
+        $this->openaiApiKey = $this->env('OPENAI_API_KEY', '');
+        if ($this->driver === 'openai' && empty($this->openaiApiKey)) {
+            throw new RuntimeException(
+                'OPENAI_API_KEY is required when using the openai driver.'
+            );
+        }
+
+        $this->model = $this->env('ANTHROPIC_MODEL', 'claude-sonnet-4-20250514');
+        $this->openaiModel = $this->env('OPENAI_MODEL', 'gpt-4o');
+        $this->passThreshold = (float) $this->env('PASS_THRESHOLD', '3.5');
+        $this->maxTurns = (int) $this->env('MAX_TURNS', '3');
+    }
+
+    private function env(string $key, ?string $default = null): ?string
+    {
+        $value = $_ENV[$key] ?? getenv($key) ?: null;
+        return $value ?? $default;
     }
 
     public function driver(): string
@@ -73,5 +89,15 @@ class Config
     public function maxTurns(): int
     {
         return $this->maxTurns;
+    }
+
+    public function openaiApiKey(): string
+    {
+        return $this->openaiApiKey;
+    }
+
+    public function openaiModel(): string
+    {
+        return $this->openaiModel;
     }
 }

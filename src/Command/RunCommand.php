@@ -43,7 +43,8 @@ class RunCommand extends Command
         $judge = new ResponseJudge($llm);
         $report = new ReportGenerator($config->passThreshold());
 
-        $output->writeln("<info>Driver:</info> {$config->driver()}  <info>Model:</info> {$config->model()}");
+        $model = $config->driver() === 'openai' ? $config->openaiModel() : $config->model();
+        $output->writeln("<info>Driver:</info> {$config->driver()}  <info>Model:</info> {$model}");
 
         $scenarios = $loader->load($input->getArgument('file'));
 
