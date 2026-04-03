@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use VoiceAgentQA\Command\RunCommand;
+
+$application = new Application('Voice Agent QA Simulator', '1.0.0');
+$application->addCommand(new RunCommand());
+$application->setDefaultCommand('run');
+$application->run();
