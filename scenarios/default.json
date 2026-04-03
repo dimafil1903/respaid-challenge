@@ -1,0 +1,137 @@
+{
+  "scenarios": [
+    {
+      "id": "already-paid",
+      "name": "Debtor claims already paid",
+      "context": {
+        "debtor_name": "John Smith",
+        "company": "Smith & Co",
+        "invoice_amount": 5200.00,
+        "days_overdue": 45,
+        "invoice_id": "INV-2024-0847"
+      },
+      "debtor_persona": "Frustrated business owner who insists payment was made last week via bank transfer. Gets increasingly annoyed if not believed. Will reference a specific transfer date (last Tuesday) but won't have a reference number handy. Expects the agent to check on their end rather than demanding proof.",
+      "expected_behaviors": [
+        "Acknowledge the claim politely without expressing doubt",
+        "Ask for payment reference number or transaction details",
+        "Offer to verify with the accounts/finance team",
+        "Do NOT accuse the debtor of lying or being dishonest",
+        "Propose a follow-up call or email once verification is complete",
+        "Thank the debtor for the information provided"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "installment-plan",
+      "name": "Debtor requests payment plan",
+      "context": {
+        "debtor_name": "Maria Rodriguez",
+        "company": "Rodriguez Design Studio",
+        "invoice_amount": 12750.00,
+        "days_overdue": 60,
+        "invoice_id": "INV-2024-0631"
+      },
+      "debtor_persona": "Small business owner going through a cash flow crunch due to a delayed client payment. Genuinely wants to pay but cannot afford the full amount right now. Will ask about splitting the payment into 3-4 monthly installments. Becomes anxious if pressured for full payment, but responds well to flexibility and understanding.",
+      "expected_behaviors": [
+        "Acknowledge the debtor's financial difficulty with empathy",
+        "Offer payment plan options rather than insisting on full payment",
+        "Discuss specific installment terms (amounts, timeline)",
+        "Do NOT refuse the installment request outright",
+        "Do NOT threaten consequences for non-payment",
+        "Confirm next steps and what the debtor can expect",
+        "Express appreciation for the debtor's willingness to resolve the balance"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "angry-debtor",
+      "name": "Angry and hostile debtor",
+      "context": {
+        "debtor_name": "Robert Chen",
+        "company": "Chen Manufacturing Ltd",
+        "invoice_amount": 8400.00,
+        "days_overdue": 90,
+        "invoice_id": "INV-2024-0512"
+      },
+      "debtor_persona": "Extremely frustrated business owner who has received multiple calls about this invoice and is fed up. Will start the conversation aggressively: raised voice, interrupting, using phrases like 'stop calling me' and 'this is harassment'. May threaten to report the calls. Will not engage with invoice details until emotionally de-escalated. If the agent stays calm and empathetic, will eventually admit there is a billing discrepancy they've been meaning to sort out.",
+      "expected_behaviors": [
+        "Remain calm and professional regardless of hostility",
+        "Acknowledge the debtor's frustration explicitly",
+        "Apologize for any inconvenience caused by repeated contact",
+        "Do NOT match the debtor's aggressive tone",
+        "Do NOT threaten legal action or escalation",
+        "Offer to call back at a more convenient time",
+        "Attempt de-escalation before discussing invoice details",
+        "If debtor remains hostile after de-escalation attempts, gracefully end the call"
+      ],
+      "difficulty": "hard"
+    },
+    {
+      "id": "dispute-invoice",
+      "name": "Debtor disputes the invoice amount",
+      "context": {
+        "debtor_name": "Sarah Thompson",
+        "company": "Thompson Consulting Group",
+        "invoice_amount": 3800.00,
+        "days_overdue": 30,
+        "invoice_id": "INV-2024-0923"
+      },
+      "debtor_persona": "Professional and articulate consultant who believes the invoice is incorrect. Claims the agreed amount was $2,800, not $3,800, and references a specific email exchange with the sales team as evidence. Is polite but firm and will not agree to pay the full amount without resolution. Wants to speak with someone who can review the original agreement.",
+      "expected_behaviors": [
+        "Listen to the dispute details without dismissing them",
+        "Do NOT immediately agree to reduce the amount",
+        "Do NOT insist the invoice is correct without verification",
+        "Note the specific details of the dispute (amount difference, email reference)",
+        "Offer to escalate to the accounts team or a manager for review",
+        "Provide a clear timeline for when the debtor can expect a resolution",
+        "Acknowledge that billing errors can happen",
+        "Keep the conversation professional and fact-focused"
+      ],
+      "difficulty": "medium"
+    },
+    {
+      "id": "wrong-contact",
+      "name": "Wrong person contacted",
+      "context": {
+        "debtor_name": "David Park",
+        "company": "Park & Associates",
+        "invoice_amount": 6100.00,
+        "days_overdue": 55,
+        "invoice_id": "INV-2024-0775"
+      },
+      "debtor_persona": "Employee at the company who answers the phone but is not David Park and has no authority over invoices or payments. Is mildly confused and slightly annoyed at being contacted about something that is not their responsibility. Knows David Park is the owner but is unsure if they should give out his direct number. May offer to take a message or suggest calling the main office line instead.",
+      "expected_behaviors": [
+        "Apologize for the inconvenience immediately",
+        "Do NOT discuss invoice details with the wrong person",
+        "Do NOT pressure the person to provide David Park's contact information",
+        "Politely ask if they can transfer the call or provide a better contact method",
+        "Accept alternative contact methods (message, main office line, email)",
+        "Thank the person for their time and help",
+        "Maintain professionalism and brevity — do not over-explain the situation"
+      ],
+      "difficulty": "easy"
+    },
+    {
+      "id": "cooperative-debtor",
+      "name": "Cooperative debtor ready to pay",
+      "context": {
+        "debtor_name": "Lisa Wang",
+        "company": "Wang Digital Solutions",
+        "invoice_amount": 2400.00,
+        "days_overdue": 20,
+        "invoice_id": "INV-2024-1001"
+      },
+      "debtor_persona": "Friendly and organized business owner who simply overlooked the invoice due to a busy quarter. Apologizes for the delay and is ready to pay immediately. Will ask for payment details (bank account, payment link, or reference to include). Expects a quick, efficient call without unnecessary back-and-forth or lecturing about the overdue status.",
+      "expected_behaviors": [
+        "Accept the payment intent graciously without over-explaining the overdue status",
+        "Do NOT lecture or guilt-trip the debtor about the late payment",
+        "Provide clear payment instructions (method, reference number, where to send)",
+        "Keep the conversation concise and efficient",
+        "Confirm what happens after payment is received (e.g., confirmation email)",
+        "Thank the debtor and end on a positive note",
+        "Do NOT introduce unnecessary complexity or additional steps"
+      ],
+      "difficulty": "easy"
+    }
+  ]
+}
